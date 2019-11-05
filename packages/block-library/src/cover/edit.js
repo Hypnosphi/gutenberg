@@ -453,6 +453,7 @@ function CoverEdit( {
 							clearable={ false }
 						/>
 						<__experimentalGradientPicker
+							disableCustomGradients
 							onChange={
 								( newGradient ) => {
 									setGradient( newGradient );
