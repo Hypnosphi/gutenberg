@@ -345,8 +345,6 @@ class RichTextWrapper extends Component {
 			identifier,
 			// eslint-disable-next-line no-unused-vars
 			instanceId,
-			// eslint-disable-next-line no-unused-vars
-			__experimentalForceBlurOnUnmount,
 			// To do: find a better way to implicitly inherit props.
 			start,
 			reversed,
@@ -462,7 +460,6 @@ const RichTextContainer = compose( [
 		instanceId,
 		identifier = instanceId,
 		isSelected,
-		__experimentalForceBlurOnUnmount,
 	} ) => {
 		const {
 			isCaretWithinFormattedText,
@@ -491,8 +488,7 @@ const RichTextContainer = compose( [
 			// In order to fix https://github.com/wordpress-mobile/gutenberg-mobile/issues/1126, let's blur on unmount in that case.
 			// This apparently assumes functionality the BlockHlder actually
 			const block = clientId && __unstableGetBlockWithoutInnerBlocks( clientId );
-			const isBeingReplaced = block && isSelected && isUnmodifiedDefaultBlock( block );
-			const shouldBlurOnUnmount = __experimentalForceBlurOnUnmount || isBeingReplaced;
+			const shouldBlurOnUnmount = block && isSelected && isUnmodifiedDefaultBlock( block );
 			extraProps = {
 				shouldBlurOnUnmount,
 			};
