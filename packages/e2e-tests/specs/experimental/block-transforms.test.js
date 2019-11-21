@@ -153,13 +153,8 @@ describe( 'Block transforms', () => {
 	} );
 
 	describe( 'correctly transform', () => {
-		beforeAll( async () => {
-			await createNewPost();
-		} );
-
 		beforeEach( async () => {
-			await setPostContent( '' );
-			await page.click( '.editor-post-title .editor-post-title__block' );
+			await createNewPost();
 		} );
 
 		const testTable = flatMap(
