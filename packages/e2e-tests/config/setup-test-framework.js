@@ -12,6 +12,7 @@ import {
 	enablePageDialogAccept,
 	isOfflineMode,
 	setBrowserViewport,
+	createURL,
 	switchUserToAdmin,
 	switchUserToTest,
 	visitAdminPage,
@@ -48,6 +49,19 @@ jest.setTimeout( PUPPETEER_TIMEOUT || 100000 );
 async function setupBrowser() {
 	await clearLocalStorage();
 	await setBrowserViewport( 'large' );
+}
+
+/**
+ * Verifies that the expected theme for the tests is active.
+ */
+async function verifyActiveTheme() {
+	await page.goto(
+		createURL( '' )
+	);
+	if ( ( await page.$( '#twentytwenty-style-css' ) ) === null ) {
+		process.stderr.write( 'Test suite must be run using the twentytwenty theme.' );
+		process.exit( 1 );
+	}
 }
 
 /**
@@ -211,6 +225,7 @@ beforeAll( async () => {
 	enablePageDialogAccept();
 	observeConsoleLogging();
 
+	await verifyActiveTheme();
 	await trashExistingPosts();
 	await setupBrowser();
 	await activatePlugin( 'gutenberg-test-plugin-disables-the-css-animations' );
