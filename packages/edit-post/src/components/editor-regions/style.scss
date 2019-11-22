@@ -27,7 +27,7 @@
 	right: 0;
 	bottom: 0;
 
-	// Cancel the fixed positioning used on Mobile.
+	// Unhide the admin-bar.
 	@include break-small() {
 		height: auto;
 		top: $admin-bar-height-big;
@@ -69,6 +69,12 @@
 
 .edit-post-editor-regions__content {
 	flex-grow: 1;
+
+	// Beyond the medium breakpoint, we allow the sidebar.
+	// The sidebar should scroll independently, so enable scroll here also.
+	@include break-medium() {
+		overflow: auto;
+	}
 }
 
 .edit-post-editor-regions__sidebar {
