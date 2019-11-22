@@ -84,6 +84,7 @@ function InsertPoint( {
 	);
 	return (
 		<Dropdown
+			className="components-custom-gradient-picker__inserter"
 			onClose={ onColorPopoverClose }
 			renderToggle={ renderToggle }
 			renderContent={ renderContent }
